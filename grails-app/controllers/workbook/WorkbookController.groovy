@@ -25,15 +25,6 @@ class WorkbookController {
         render(view:'create', model: [workbook:workbook])
     }
 
-    def save()
-    {
-        def workbook = new Workbook()
-        bindData(workbook,params)
-        workbookService.save(workbook)
-        redirect action:"index"
-
-    }
-
     def delete(Long id)
     {
         workbookService.delete(id)
@@ -42,14 +33,24 @@ class WorkbookController {
 
     }
 
-    def showEdit(Long id){
+    def edit(Long id){
         def workbook = workbookService.retrieveWorkbook(id)
+        if (workbook) {
+            render(view:'edit',model:[workbook: workbook] )
+        } else {
+            redirect action: 'index'
+        }
+    }
 
-        render(view:'edit',model:[workbook: workbook] )
+    def save() {
+        def workbook = new Workbook()
+        bindData(workbook,params)
+        workbookService.save(workbook)
+        redirect action:"index"
     }
 
 
-    def editWorkbook(Long id){
+    def update(Long id) {
        def workbook =  workbookService.retrieveWorkbook(id)
         bindData(workbook,params)
         workbookService.save(workbook)

@@ -46,7 +46,7 @@
             <td>${workbook.passportNumber}</td>
             <td>${workbook.email}</td>
             <td>${workbook.phone}</td>
-            <td><g:link action = "showEdit" controller="workbook"  params = "${[id:workbook.id]}">Update</g:link></td>
+            <td><g:link action = "edit" controller="workbook"  params = "${[id:workbook.id]}">Update</g:link></td>
             <td><g:link class="delete" action="delete" params = "${[id:workbook.id]}">Delete</g:link></td>
             <td><g:link params = "${[id:workbook.id]}" action ="view" controller ="workbook" class="view">View</g:link></td>
 

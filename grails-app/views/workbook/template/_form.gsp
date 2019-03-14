@@ -53,19 +53,11 @@
         <label>Phone: </label>
         <g:textField name="phone" value="${workbook.phone}"/><br/>
 
-        <g:if test="${actionName =="create"}">
-
-
-            <g:actionSubmit class= "save"  controller="workbook" action ="save" value="Create"/>
-
+    <g:if test="${actionName =="create"}">
+        <g:actionSubmit class= "save"  controller="workbook" action ="save" value="Create"/>
     </g:if>
     <g:else>
-
-
- <g:actionSubmit class= "save"  controller="workbook" action ="editWorkbook" value="Update"/>
-
-
-
+        <g:actionSubmit class= "save"  controller="workbook" action ="update" value="Update"/>
     </g:else>
     </fieldset>
 </g:form>
