@@ -1,4 +1,4 @@
-package workbook
+package com.webbfontaine.workbook
 
 class UrlMappings {
 

@@ -1,4 +1,4 @@
-package workbook
+package com.webbfontaine.workbook
 
 import grails.gorm.transactions.Transactional
 
@@ -8,7 +8,7 @@ class WorkbookService {
     def serviceMethod() {
 
     }
-
+    //no usagev
     def get(id){
         Workbook.get(id)
     }

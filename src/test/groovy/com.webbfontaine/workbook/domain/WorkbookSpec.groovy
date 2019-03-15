@@ -2,7 +2,7 @@ package com.webbfontaine.workbook.domain
 
 import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
-import workbook.Workbook
+import com.webbfontaine.workbook.Workbook
 
 class WorkbookSpec extends Specification implements DomainUnitTest<Workbook> {
 

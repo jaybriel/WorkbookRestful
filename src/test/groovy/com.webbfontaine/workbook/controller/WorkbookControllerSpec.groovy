@@ -4,9 +4,9 @@ import grails.testing.gorm.DataTest
 import grails.testing.web.controllers.ControllerUnitTest
 import spock.lang.Specification
 import spock.lang.Unroll
-import workbook.Workbook
-import workbook.WorkbookController
-import workbook.WorkbookService
+import com.webbfontaine.workbook.Workbook
+import com.webbfontaine.workbook.WorkbookController
+import com.webbfontaine.workbook.WorkbookService
 
 class WorkbookControllerSpec extends Specification implements ControllerUnitTest<WorkbookController>, DataTest {
 
@@ -49,19 +49,94 @@ class WorkbookControllerSpec extends Specification implements ControllerUnitTest
     void "Test the index action returns the correct model"() {
 
         given:
-        def workbookList = [new Workbook(firstName: 'jaybriel',lastName: 'somcio',dateOfBirth: '11/02/1997',age: '21',passportNumber: '123455',email: 'jaybrielsomcio@gmail.com',phone: '09151324733')]
-
+        controller.workbookService = Stub(WorkbookService){
+            list() >> [new Workbook(firstName:"test",lastName:"test",dateOfBirth:"test",age: "test",passportNumber: "test",email: "test",phone: "test"),new Workbook(firstName:"test",lastName:"test",dateOfBirth:"test",age: "test",passportNumber: "test",email: "test",phone: "test")]
+        }
 
         when:'The index action is executed'
         controller.index()
 
 
 
-        then:'The model is correct'
-        model.workbookList
-        model.workbookList.find{it.firstName == 'jaybriel'}
+        then:
+        view.startsWith('/workbook/index')
 //        model.workbookList.size() == 1
 
 
     }
+
+    void "Test the index action if returns null model"(){
+
+        given:
+        controller.workbookService = Stub(WorkbookService){
+            list() >> null
+        }
+        when:"The index action is executed"
+        controller.index()
+
+        then:
+        view.startsWith('/workbook/index')
+    }
+
+    void "test save action with new workbook"(){
+        given:
+        controller.workbookService = Stub(WorkbookService){
+            save(_) >> new Workbook(firstName:"test",lastName:"test",dateOfBirth:"test",age: "test",passportNumber: "test",email: "test",phone: "test")
+        }
+
+        when:"The save action is executed"
+        controller.save()
+
+        then:
+
+        response.redirectUrl.startsWith('/workbook/index')
+    }
+
+    void "test save action with null workbook"(){
+        given:
+        controller.workbookService = Stub(WorkbookService){
+            save(_) >> null
+        }
+
+        when:"The save action is executed"
+        controller.save()
+
+        then:
+        response.redirectUrl.startsWith('/workbook/index')
+        //view.startsWith('/workbook/save')
+    }
+
+    void "test delete action with existing workbook"(){
+        given:
+        controller.workbookService = Stub(WorkbookService){
+            delete(_) >> 1
+        }
+        when: "The delete action is executed"
+        controller.delete()
+
+        then:
+        response.redirectUrl.startsWith('/workbook/index')
+    }
+
+    void "test delete action with non existing workbook"(){
+        given:
+        controller.workbookService = Stub(WorkbookService){
+            delete(_) >> null
+        }
+        when: "The delete action is executed"
+        controller.delete()
+
+        then:
+        response.redirectUrl.startsWith('/workbook/index')
+
+    }
+
+    void "test create action"(){
+        when:"The create action is executed"
+        controller.create()
+
+        then:
+        view.startsWith('/workbook/create')
+    }
+
 }
