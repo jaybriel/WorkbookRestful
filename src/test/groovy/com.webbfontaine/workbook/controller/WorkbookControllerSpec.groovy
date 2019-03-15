@@ -89,7 +89,7 @@ class WorkbookControllerSpec extends Specification implements ControllerUnitTest
 
         then:
 
-        response.redirectUrl.startsWith('/workbook')
+        response.redirectUrl.startsWith('/')
     }
 
     void "test save action with null workbook"(){
@@ -102,7 +102,7 @@ class WorkbookControllerSpec extends Specification implements ControllerUnitTest
         controller.save()
 
         then:
-        response.redirectUrl.startsWith('/workbook')
+        response.redirectUrl.startsWith('/')
         //view.startsWith('/workbook/save')
     }
 
@@ -115,7 +115,7 @@ class WorkbookControllerSpec extends Specification implements ControllerUnitTest
         controller.delete()
 
         then:
-        response.redirectUrl.startsWith('/workbook')
+        response.redirectUrl.startsWith('/')
     }
 
     void "test delete action with non existing workbook"(){
@@ -127,7 +127,7 @@ class WorkbookControllerSpec extends Specification implements ControllerUnitTest
         controller.delete()
 
         then:
-        response.redirectUrl.startsWith('/workbook')
+        response.redirectUrl.startsWith('/')
 
     }
 
