@@ -27,7 +27,7 @@ class WorkbookControllerSpec extends Specification implements ControllerUnitTest
         controller.edit()
 
         then:
-        response.redirectUrl.startsWith('/workbook/index')
+        response.redirectUrl.startsWith('/workbook')
 
     }
 
@@ -59,7 +59,7 @@ class WorkbookControllerSpec extends Specification implements ControllerUnitTest
 
 
         then:
-        view.startsWith('/workbook/index')
+        view.startsWith('/workbook')
 //        model.workbookList.size() == 1
 
 
@@ -75,7 +75,7 @@ class WorkbookControllerSpec extends Specification implements ControllerUnitTest
         controller.index()
 
         then:
-        view.startsWith('/workbook/index')
+        view.startsWith('/workbook')
     }
 
     void "test save action with new workbook"(){
@@ -89,7 +89,7 @@ class WorkbookControllerSpec extends Specification implements ControllerUnitTest
 
         then:
 
-        response.redirectUrl.startsWith('/workbook/index')
+        response.redirectUrl.startsWith('/workbook')
     }
 
     void "test save action with null workbook"(){
@@ -102,7 +102,7 @@ class WorkbookControllerSpec extends Specification implements ControllerUnitTest
         controller.save()
 
         then:
-        response.redirectUrl.startsWith('/workbook/index')
+        response.redirectUrl.startsWith('/workbook')
         //view.startsWith('/workbook/save')
     }
 
@@ -115,7 +115,7 @@ class WorkbookControllerSpec extends Specification implements ControllerUnitTest
         controller.delete()
 
         then:
-        response.redirectUrl.startsWith('/workbook/index')
+        response.redirectUrl.startsWith('/workbook')
     }
 
     void "test delete action with non existing workbook"(){
@@ -127,7 +127,7 @@ class WorkbookControllerSpec extends Specification implements ControllerUnitTest
         controller.delete()
 
         then:
-        response.redirectUrl.startsWith('/workbook/index')
+        response.redirectUrl.startsWith('/workbook')
 
     }
 

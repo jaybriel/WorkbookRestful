@@ -9,7 +9,7 @@ class UrlMappings {
             }
         }
 
-        "/"(controller:'workbook',action:'index')
+        "/workbook"(controller:'workbook',action:'index')
         "500"(view:'/error')
         "404"(view:'/notFound')
     }

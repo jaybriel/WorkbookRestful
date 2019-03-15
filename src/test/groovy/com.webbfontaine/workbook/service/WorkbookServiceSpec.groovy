@@ -93,7 +93,7 @@ class WorkbookServiceSpec extends  HibernateSpec implements ServiceUnitTest<Work
         result = service.delete(workbook.id)
 
         then:
-        result == null
+        result ==  null
 
     }
 

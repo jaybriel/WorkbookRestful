@@ -5,13 +5,6 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class WorkbookService {
 
-    def serviceMethod() {
-
-    }
-    //no usagev
-    def get(id){
-        Workbook.get(id)
-    }
 
     def list(){
         Workbook.list()
@@ -26,7 +19,6 @@ class WorkbookService {
     {
         Workbook.get(id).delete()
     }
-
 
     def retrieveWorkbook(id){
        def workbook = Workbook.findById(id)

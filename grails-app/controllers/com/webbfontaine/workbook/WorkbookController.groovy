@@ -7,7 +7,7 @@ class WorkbookController {
     def index()
     {
         def workbookList = workbookService.list()
-        render(model:[workbookList:workbookList],view:'/workbook/index')
+        render(model:[workbookList:workbookList],view:'/workbook')
     }
 
 
