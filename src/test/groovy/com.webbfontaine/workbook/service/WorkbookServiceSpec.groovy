@@ -21,7 +21,7 @@ class WorkbookServiceSpec extends  HibernateSpec implements ServiceUnitTest<Work
     }
 
 
-    void "test retrieveWorkbook action"(){
+    void "test retrieveWorkbook action with existing id"(){
         given:
         new Workbook(firstName:"test",lastName:"test",dateOfBirth:"test",age: "test",passportNumber: "test",email: "test",phone: "test").save(flush:true)
         def result
@@ -32,6 +32,72 @@ class WorkbookServiceSpec extends  HibernateSpec implements ServiceUnitTest<Work
         then:
         result.firstName == "test"
     }
+
+    void "test retrieveWorkbook action with non existing id"(){
+        given:
+        new Workbook(firstName:"test",lastName:"test",dateOfBirth:"test",age: "test",passportNumber: "test",email: "test",phone: "test").save(flush:true)
+        def result
+
+        when:
+        result = service.retrieveWorkbook(null)
+
+        then:
+        result == null
+    }
+
+    void "test list action"(){
+        given:
+        def workbookList = [new Workbook(firstName:"test",lastName:"test",dateOfBirth:"test",age: "test",passportNumber: "test",email: "test",phone: "test").save(flush:true),new Workbook(firstName:"test",lastName:"test",dateOfBirth:"test",age: "test",passportNumber: "test",email: "test",phone: "test").save(flush:true)]
+        def result
+
+        when:
+        result = service.list()
+
+        then:
+        result == workbookList
+
+
+    }
+
+    void "test save action with existing workbook"(){
+        given:
+        def workbook = new Workbook(firstName:"test",lastName:"test",dateOfBirth:"test",age: "test",passportNumber: "test",email: "test",phone: "test").save(flush:true)
+        def result
+
+        when:
+        result = service.save(workbook)
+
+        then:
+        result == workbook
+    }
+/*
+    void "test save action with non existing workbook"(){
+        given:
+        def workbook = null
+        def result
+
+        when:
+        result = service.save(workbook)
+
+        then:
+        result == null
+
+    }*/
+
+    void "test delete action with existing id"(){
+        given:
+        def workbook = new Workbook(id:1,firstName:"test",lastName:"test",dateOfBirth:"test",age: "test",passportNumber: "test",email: "test",phone: "test").save(flush:true)
+        def result
+
+        when:
+        result = service.delete(workbook.id)
+
+        then:
+        result == null
+
+    }
+
+
 
 
 
