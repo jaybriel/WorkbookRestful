@@ -27,7 +27,7 @@ class WorkbookControllerSpec extends Specification implements ControllerUnitTest
         controller.edit()
 
         then:
-        response.redirectUrl.startsWith('/workbook')
+        response.redirectUrl.startsWith('/')
 
     }
 
