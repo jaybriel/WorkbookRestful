@@ -6,7 +6,7 @@ class Workbook {
     long id
     String firstName
     String lastName
-    LocalDate dateOfBirth
+    String dateOfBirth
     int age
     String passportNumber
     String email
