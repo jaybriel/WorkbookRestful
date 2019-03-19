@@ -14,14 +14,17 @@ function getBirthDate(){
     var dateOfBirth = document.getElementById("dateOfBirth").value;
 
     //alert(dateOfBirth);
-    splitString = dateOfBirth.split("/");
+    splitString = dateOfBirth.split("-");
 
    // alert(splitString[2]);
 
     var yearToday = new Date().getFullYear();
 
-    var age = yearToday - splitString[2];
+    var age = yearToday - splitString[0];
+
+
 
 
     document.getElementById("age").value = age;
+
 }

@@ -24,7 +24,7 @@
         <label>Last Name: </label>
         <g:textField name="lastName" value="${workbook.lastName}"/><br/>
         <label>Date Of Birth: </label>
-      <g:textField data-provide="datepicker" class="datepicker" onchange="getBirthDate();"  name="dateOfBirth" id ="dateOfBirth" value="${workbook.dateOfBirth}"/><br/>
+      <g:textField data-provide="datepicker" data-date-format="yyyy-mm-dd" class="datepicker" onchange="getBirthDate();"  name="dateOfBirth" id ="dateOfBirth" value="${workbook.dateOfBirth}"/><br/>
         <label>Age: </label>
         <g:textField readonly="readonly" name="age" value="${workbook.age}"  /><br/>
         <label>Passport Number: </label>

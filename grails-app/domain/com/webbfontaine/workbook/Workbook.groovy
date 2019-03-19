@@ -1,11 +1,13 @@
 package com.webbfontaine.workbook
 
+import java.time.LocalDate
+
 class Workbook {
     long id
     String firstName
     String lastName
-    String dateOfBirth
-    String age
+    LocalDate dateOfBirth
+    int age
     String passportNumber
     String email
     String phone
