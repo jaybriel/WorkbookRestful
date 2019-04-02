@@ -13,6 +13,13 @@
 </head>
 
 <body>
+
+<div class = "nav" role = "navigation">
+    <ul>
+        <li><g:link class="home" action = "index">Home</g:link></li>
+    </ul>
+</div>
+<h1>Workbook Details</h1>
 <table align="center">
     <tr>
         <td>First Name:</td>
@@ -55,6 +62,10 @@
 
     </tr>
 </table>
+
+
+<h1>Workplace List Details</h1>
+<g:render template="template/workplacelist" model="[workbook:workbook, action:'view']"/>
 
 
 </body>

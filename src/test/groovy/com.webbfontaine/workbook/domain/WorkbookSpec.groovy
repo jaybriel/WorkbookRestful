@@ -33,9 +33,9 @@ class WorkbookSpec extends Specification implements DomainUnitTest<Workbook> {
 
         where:
         firstName | lastName | dateOfBirth | age | passportNumber |         email              | phone         | isValid
-        "jaybriel"| "somcio" | "11/02/1997"| "21"| "12345"        | "jaybrielsomcio@gmail.com" | "09151324733" | true
-        null      | null     | null        | null|      null      |         null               |    null       | false
-        "jaybriel"| null     | "11/02/1997"| null|      null      |         null               |    null       | false
+        "jaybriel"| "somcio" | "11/02/1997"| 21  | "12345"        | "jaybrielsomcio@gmail.com" | "09151324733" | true
+        null      | null     | null        | 0   |      null      |         null               |    null       | false
+        "jaybriel"| null     | "11/02/1997"| 0   |      null      |         null               |    null       | false
 
     }
 }
