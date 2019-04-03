@@ -26,21 +26,23 @@
 <g:if test="${actionName =="view"}">
 </g:if>
 <g:else>
-<%--  <g:form method="POST" action="save" controller="workbook">
+<g:form method="POST" action="save" controller="workbook">
 <g:hiddenField name="sessionId" id="sessionId" value="${params.sessionId}" />
 <%-- <g:link action="save" controller="workbook"><button type="button" class="btn btn-outline-success">Save All</button></g:link>--%>
    <%--   <g:actionSubmit class= "btn btn-outline-success"  controller="workbook" action ="save" value="Save All"/>--%>
         <!--<button type="button" class= "btn btn-outline-success" id ="saveWorkbook" >Add</button>-->
 
-<%-- </g:form>--%>
+</g:form>
+
 </g:else>
 
 
 
 
-
+<g:form method="POST">
 <table class="table order-list" id="myTable">
 <tr>
+    <th></th>
     <th></th>
     <th>Company Code</th>
     <th>Company Name</th>
@@ -58,7 +60,7 @@
     <g:if test="${actionName =="view"}">
     </g:if>
     <g:else>
-
+        <g:hiddenField name="sessionId" id="sessionId" value="${params.sessionId}" />
         <button type="button" class="btn btn-default" id="addWorkplace">Add Workplace</button>
 
     </g:else>
@@ -69,10 +71,11 @@
     </a>--></td>
 </tr>
 <tr>
-<g:form method="POST">
+
     <g:hiddenField name="sessionId" id="sessionId" value="${params.sessionId}" />
-    <g:each in = "${workplaceList}" var="workplace">
-            <td></td>
+    <g:each status = "i" in = "${workplaceList}" var="workplace">
+            <td><g:hiddenField name="id" id ="id"  value="${workplace.id}" /></td>
+        <td><g:hiddenField name="rank" id ="rank"  value="${i}" /></td>
             <td>${workplace.cmpCode}</td>
             <td>${workplace.cmpName}</td>
             <td>${workplace.ctyCode}</td>
@@ -83,17 +86,20 @@
         <g:if test="${actionName =="view"}">
         </g:if>
         <g:else>
-            <td><g:link action = "edit" controller="workplace"  params = "${[id:workplace.id]}"><button type ="button" class="btn btn-warning"> Update </button></g:link></td>
-            <td><g:link class="delete" onclick="return confirm('Are you sure?')" controller="workplace" action="delete" params = "${[id:workplace.id]}"><button type ="button" class="btn btn-danger"> Delete </button></g:link></td>
-            <td><g:link params = "${[id:workplace.id]}" action ="view" controller ="workbook" class="view"><button type ="button" class="btn btn-info"> View </button></g:link></td>
-
-
+            %{--<td><g:link action = "edit" controller="workplace"  params = "${[id:workplace.id]}"><button type ="button" class="btn btn-warning"> Update </button></g:link></td>--}%
+            %{--<td><g:link class="delete" onclick="return confirm('Are you sure?')" controller="workplace" action="delete" params = "${[rank:i]}"><button type ="button" class="btn btn-danger"> Delete </button></g:link></td>--}%
+            %{--<td><g:link params = "${[id:workplace.id]}" action ="view" controller ="workbook" class="view"><button type ="button" class="btn btn-info"> View </button></g:link></td>--}%
+            %{--<td><g:link class="delete" onclick="return confirm('Are you sure?')" controller="workplace" action="delete" params = "${[rank:i]}"><button type ="button" class="btn btn-danger"> Delete </button></g:link></td>--}%
+            <td><button type="button" class="btn btn-default" id="deleteWorkplace">Delete</button></td>
+            <td><button type="button" class="btn btn-default" id="updateWorkplace">Update</button></td>
+            <td><button type="button" class="btn btn-default" id="showWorkplace">View</button></td>
         </g:else>
 
         </tr>
     </g:each>
-</g:form>
+
 </table>
+</g:form>
 <%--<g:actionSubmit value="Save All"  controller="workbook" action="save"/>--%>
 
 <!--<button type="submit" class="btn btn-default" id="saveAll">Save All</button>-->

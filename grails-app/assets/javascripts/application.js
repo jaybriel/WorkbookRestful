@@ -100,6 +100,7 @@ $(document).on('click', '#addWorkplace', function () { //addWorkplace is selecto
         async: false,
         success: function (result) {
             console.log("here inside")
+            console.log(sessio)
             $("#workplaceList").html(result) //selector of the tab
         }
     });
@@ -139,9 +140,29 @@ $(document).on('click', '#saveAll', function () { //addWorkplace is selector
     });
 });
 
+
+$(document).on('click', '#deleteWorkplace', function () { //addWorkplace is selector
+    console.log("here")
+    var sessio = document.getElementById("sessionId").value
+    var rank = parseInt(document.getElementById("rank").value)
+    $.ajax({
+        type: 'POST',
+        url: "/workbook/workplace/delete",
+        data: {sessionId:sessio,rank:rank},
+        success: function (result) {
+            console.log("here inside")
+            console.log(rank)
+            $("#workplaceList").html(result) //selector of the tab
+        }
+    });
+});
+
 $(document).on('click', '#saveWorkplace', function () { //addWorkplace is selector
     console.log("save here")
     var sessio = document.getElementById("sessionId").value;
+
+
+
     var data = $('#workplaceForm').serialize()
 
     $.ajax({

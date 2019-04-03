@@ -20,6 +20,7 @@
     <fieldset>
         <g:hiddenField name="sessionId" id="sessionId" value="${params.sessionId}" />
         <g:hiddenField name="id"  value="${workplace.id}" />
+        <g:hiddenField name="rank"  value="${workplace.rank}" />
         <div class="content">
             <div class="col-1">
                 <label for="cmpCode">Company Code</label>
