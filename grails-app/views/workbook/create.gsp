@@ -29,6 +29,7 @@ ${actionName}
 <head>
     <title></title>
     <meta name = "layout" content ="main"/>
+    <g:javascript library='jquery' />
     <asset:javascript src="bootstrap-datepicker.js"/>
     <asset:javascript src="jquery-3.3.1.min.js.js"/>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-datepicker.css')}" type="text/css">
@@ -54,7 +55,7 @@ ${actionName}
     <!-- Tab panes -->
     <div class="tab-content">
 
-        <div role="tabpanel" class="tab-pane active" id="workbook"><g:render template="template/workbookform" model="[workbook:workbook, sessionId:params.instId, action:'createWorkbook',]"/></div>
+        <div role="tabpanel" class="tab-pane active" id="workbook"><g:render template="template/workbookform" model="[workbook:workbook, sessionId:params.sessionId, action:'createWorkbook']"/></div>
         <div role="tabpanel" class="tab-pane" id="workplaceList"><g:render template="template/workplacelist" model="[workbook:workbook,workplaceList:workbook.workplaces,sessionId:params.sessionId,action:'showList']" /></div>
     </div>
 

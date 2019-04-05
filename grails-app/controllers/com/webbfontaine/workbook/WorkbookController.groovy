@@ -20,37 +20,18 @@ class WorkbookController {
         render(view:'/workbook/show',model:[workbook: workbook,workplaceList: workbook.workplaces, actionName: actionName])
     }
 
-//
-//    def create()
-//    {
-//        def workbook = new Workbook()
-//        def workplace = new Workplace()
-//        def sid = session.id
-//        sessionService.addToSessionStore(sid,workbook)
-//        params.instId = sid
-//        render(view:'/workbook/create', model: [workbook:workbook,workplace:workplace])
-//    }
+
 
     def createWorkbook(){
         def workbook = new Workbook()
         def workplace = new Workplace()
-        def sid = session.id // generates session id
+        def sid = session.id
         sessionService.addToSessionStore(sid,workbook)
         sessionService.getObjectFromSession(sid)
         params.sessionId = sid
         render(view:'/workbook/create', model: [workbook:workbook,workplace:workplace,actionName:actionName],id:sid)
     }
 
-//    def showCreateWorkbook(){
-//        def workbook = new Workbook()
-//        def workplace = new Workplace()
-//        def sid = session.id
-//        sessionService.addToSessionStore(sid,workbook)
-//        sessionService.getObjectFromSession(sid)
-//        params.instId = sid
-//        def actionName = "createWorkbook"
-//        render(template: "/workbook/template/workbookform", model: [workbook:workbook,workplace:workplace,actionName:actionName],id:sid)
-//    }
 
     def delete(Long id)
     {
@@ -76,16 +57,11 @@ class WorkbookController {
 
 
     def save() {
-//        def workbook = workbookService.retrieveWorkbookById(params.id)
-//        if(actionName != 'edit')
-//        {
-//
-//        }
+
 
            def sessionId = params.sessionId
-           def workbook  = workbookService.retrieveWorkbookBySessionId(params.sessionId)//retrieving id for update
+           def workbook  = workbookService.retrieveWorkbookBySessionId(params.sessionId)
 
-        //def workbook = workbookService.retrieveWorkbookById(params.id)
 
 
         bindData(workbook,params)
@@ -99,17 +75,14 @@ class WorkbookController {
 
             }
         else{
-             // render(model:[workbook:workbook,errorBean:workbook,actionName:'createWorkbook',sessionId:params.sessionId],template: '/workbook/template/workbookform')
-             render(model:[workbook:workbook,errorBean:workbook,actionName:'createWorkbook',sessionId:sessionId],view:'/workbook/create')
+                render(model:[workbook:workbook,errorBean:workbook,actionName:'createWorkbook',sessionId:sessionId],view:'/workbook/create')
             }
-          //  redirect action:'index',errorBean:workbook
+//             render(model:[workbook:workbook,errorBean:workbook,actionName:'createWorkbook',sessionId:sessionId],view:'/workbook/create')
 
+            }
 
-       // def workbookList = workbookService.list()
-//        render(model:[workbookList:workbookList],view:'index')
 
     }
 
 
 
-}

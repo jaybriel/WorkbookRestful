@@ -13,10 +13,14 @@ class Workplace {
     static constraints = {
         cmpCode unique: true
         cmpName unique: true
+
         id nullable:false
+        ctyDesc nullable:false
+        startDate nullable:false
+        endDate nullable:false
+
     }
 
     static belongsTo = [workbook:Workbook]
-//    static mapping = { id generator: 'hilo', name: 'rank' }
 
 }

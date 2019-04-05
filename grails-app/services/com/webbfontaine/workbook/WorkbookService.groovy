@@ -16,12 +16,6 @@ class WorkbookService {
         workbook.save()
     }
 
-    def savetoSession(id,workbook)
-    {
-        def workbookSession = (Workbook) sessionService.addToSessionStore(id,workbook)
-        workbookSession
-    }
-
     def delete(id)
     {
         Workbook.get(id).delete()
@@ -29,7 +23,6 @@ class WorkbookService {
 
     def retrieveWorkbookById(id){
        def workbook = Workbook.findById(id)
-        //Workbook workbook = (Workbook) sessionService.getObjectFromSession(id)
         workbook
     }
 

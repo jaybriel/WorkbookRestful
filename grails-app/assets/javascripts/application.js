@@ -70,17 +70,17 @@ $(document).ready(function() {
 
 
 $(document).on('click', '#showWorkbookform', function (e) { //addWorkplace is selector
-    console.log("here")
-    var sessio = document.getElementById("sessionId").value
+    console.log("here");
+    var sessio = document.getElementById("sessionId").value;
 
     $.ajax({
         type: 'POST',
         url: "/workbook/workbook/showCreateWorkbook",
+        async:false,
         data: {sessionId: sessio},
         success: function (result) {
-            console.log("here inside")
-            $("#workbook").html(result).addClass("active") //selector of the tab
-            $("#workplacelist").html(result).removeClass("active") //selector of the tab
+            console.log("here inside");
+            $("#workbook").html(result)
 
         }
     });
@@ -90,8 +90,8 @@ $(document).on('click', '#showWorkbookform', function (e) { //addWorkplace is se
 
 
 $(document).on('click', '#addWorkplace', function () { //addWorkplace is selector
-    console.log("here")
-    var sessio = document.getElementById("sessionId").value
+    console.log("here");
+    var sessio = document.getElementById("sessionId").value;
 
     $.ajax({
         type: 'POST',
@@ -99,26 +99,25 @@ $(document).on('click', '#addWorkplace', function () { //addWorkplace is selecto
         data: {sessionId: sessio},
         async: false,
         success: function (result) {
-            console.log("here inside")
-            console.log(sessio)
+            console.log("here inside");
+            console.log(sessio);
             $("#workplaceList").html(result) //selector of the tab
         }
     });
 });
 
 $(document).on('click', '#showWorkplace', function () { //addWorkplace is selector
-    console.log("here")
-    var sessio = document.getElementById("sessionId").value
+    console.log("here");
+    var sessio = document.getElementById("sessionId").value;
 
     $.ajax({
         type: 'POST',
         url: "/workbook/workplace/showList",
-        async:false,
         data: {sessionId: sessio},
         success: function (result) {
-            console.log(sessio)
+            console.log(sessio);
 
-            $("#workplacelist").html(result)
+            $("#workplaceList").html(result)
 
 
         }
@@ -126,44 +125,155 @@ $(document).on('click', '#showWorkplace', function () { //addWorkplace is select
 });
 
 $(document).on('click', '#saveAll', function () { //addWorkplace is selector
-    console.log("here")
-    var sessio = document.getElementById("sessionId").value
-    var data = $('#workbook').serialize()
+    console.log("here");
+    var sessio = document.getElementById("sessionId").value;
+    var data = $('#workbook').serialize();
     $.ajax({
         type: 'POST',
         url: "/workbook/workbook/save",
+        async:false,
         data: {sessionId:sessio},
         success: function (result) {
-            console.log("here inside")
+            console.log("here inside");
             $("#workbook").html(result) //selector of the tab
         }
     });
 });
 
 
+function editWorkplace(ele){
+    var target='#updateWorkplace_' + ele;
+    console.log(ele);
+    $(document).on('click', target, function () { //addWorkplace is selector
+        console.log("here");
+        var sessio = document.getElementById("sessionId").value;
+        // var rank = document.getElementById("rank").value;
+        // var rank = $('deleteWorkplace').val();
+        var rank = $(this).attr("rank");
+
+
+
+        $.ajax({
+            type: 'POST',
+            url: "/workbook/workplace/edit",
+            async:false,
+            data: {sessionId:sessio,rank:rank},
+            success: function (result) {
+                console.log("here inside");
+                console.log(rank);
+                $("#workplaceList").html(result) //selector of the tab
+            }
+        });
+    });
+}
+
+function viewWorkplace(ele){
+    var target='#viewWorkplace_' + ele;
+    console.log(ele);
+    $(document).on('click', target, function () { //addWorkplace is selector
+        console.log("here");
+        var sessio = document.getElementById("sessionId").value;
+        // var rank = document.getElementById("rank").value;
+        // var rank = $('deleteWorkplace').val();
+        var rank = $(this).attr("rank");
+
+
+
+        $.ajax({
+            type: 'POST',
+            url: "/workbook/workplace/viewWorkplace",
+            async:false,
+            data: {sessionId:sessio,rank:rank},
+            success: function (result) {
+                console.log("here inside");
+                console.log(rank);
+                $("#workplaceList").html(result) //selector of the tab
+            }
+        });
+    });
+}
+
+
+function deleteWorkplace(ele)
+{
+    var target='#deleteWorkplace_' + ele;
+    console.log(ele);
+    $(document).on('click', target, function () { //addWorkplace is selector
+        console.log("here");
+        var sessio = document.getElementById("sessionId").value;
+        // var rank = document.getElementById("rank").value;
+        // var rank = $('deleteWorkplace').val();
+        var rank = $(this).attr("rank");
+
+
+
+        $.ajax({
+            type: 'POST',
+            url: "/workbook/workplace/delete",
+            async:false,
+            data: {sessionId:sessio,rank:rank},
+            success: function (result) {
+                console.log("here inside");
+                console.log(rank);
+                $("#workplaceList").html(result) //selector of the tab
+            }
+        });
+    });
+}
+
+
+
 $(document).on('click', '#deleteWorkplace', function () { //addWorkplace is selector
-    console.log("here")
-    var sessio = document.getElementById("sessionId").value
-    var rank = parseInt(document.getElementById("rank").value)
+    console.log("here");
+    var sessio = document.getElementById("sessionId").value;
+    // var rank = document.getElementById("rank").value;
+    // var rank = $('deleteWorkplace').val();
+    var rank = $(this).attr("rank");
+
+
+
     $.ajax({
         type: 'POST',
         url: "/workbook/workplace/delete",
+        async:false,
         data: {sessionId:sessio,rank:rank},
         success: function (result) {
-            console.log("here inside")
-            console.log(rank)
+            console.log("here inside");
+            console.log(rank);
             $("#workplaceList").html(result) //selector of the tab
         }
     });
 });
 
-$(document).on('click', '#saveWorkplace', function () { //addWorkplace is selector
-    console.log("save here")
+$(document).on('click', '#updateWorkplace', function () { //addWorkplace is selector
+    console.log("save here");
     var sessio = document.getElementById("sessionId").value;
 
 
 
-    var data = $('#workplaceForm').serialize()
+    var data = $('#workplaceForm').serialize();
+
+    $.ajax({
+        type: 'POST',
+        async: false,
+        url: "/workbook/workplace/update",
+        data: data,
+        // data: {sessionId:sessio},
+        success: function (result) {
+            console.log(sessio);
+            $("#workplaceList").html(result) //selector of the tab
+        }
+    });
+
+});
+
+$(document).on('click', '#saveWorkplace', function () { //addWorkplace is selector
+    console.log("save here");
+    var sessio = document.getElementById("sessionId").value;
+
+
+
+    var data = $('#workplaceForm').serialize();
 
     $.ajax({
         type: 'POST',
@@ -172,17 +282,9 @@ $(document).on('click', '#saveWorkplace', function () { //addWorkplace is select
         data: data,
        // data: {sessionId:sessio},
         success: function (result) {
-           console.log(sessio)
+           console.log(sessio);
             $("#workplaceList").html(result) //selector of the tab
         }
     });
-    // $.ajax({
-    //     type: 'POST',
-    //     url: "/workbook/workplace/showList",
-    //     data: data,
-    //     success: function (result) {
-    //         console.log("here inside")
-    //         $("#workplacelist").html(result) //selector of the tab
-    //     }
-    // });
+
 });

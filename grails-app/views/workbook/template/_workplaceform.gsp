@@ -10,12 +10,13 @@
 <head>
     <title></title>
     <meta name = "layout" content ="main"/>
-    <asset:javascript src="bootstrap-datepicker.js"/>
+    <g:javascript library='jquery' />
     <asset:javascript src="jquery-3.3.1.min.js.js"/>
+    <asset:javascript src="bootstrap-datepicker.js"/>
+
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-datepicker.css')}" type="text/css">
 </head>
 <body>
-
 <form id="workplaceForm" method="POST">
     <fieldset>
         <g:hiddenField name="sessionId" id="sessionId" value="${params.sessionId}" />
@@ -84,7 +85,8 @@
                 <button type="button" class= "btn btn-outline-success" id ="saveWorkplace" >Add</button>
             </g:if>
             <g:else>
-                <g:actionSubmit class= "btn btn-outline-success"  controller="workplace" action ="showList" value="Update"/>
+                <button type="button" class= "btn btn-outline-success" id ="updateWorkplace" >Update</button>
+                %{--<g:actionSubmit class= "btn btn-outline-success"  controller="workplace" action ="showList" value="Update"/>--}%
             </g:else>
 
         </div>

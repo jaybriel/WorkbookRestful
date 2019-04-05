@@ -21,7 +21,7 @@ class Workbook {
         dateOfBirth nullable: false
         age nullable: false,range:18..65
         passportNumber nullable: false,unique: true
-        email nullable: false,email:true
+        email nullable: false,email:true, unique: true
         phone nullable: false
     }
 }

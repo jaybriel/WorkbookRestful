@@ -10,8 +10,10 @@
 <head>
     <title></title>
     <meta name = "layout" content ="main"/>
-    <asset:javascript src="bootstrap-datepicker.js"/>
+    <g:javascript library='jquery' />
     <asset:javascript src="jquery-3.3.1.min.js.js"/>
+    <asset:javascript src="bootstrap-datepicker.js"/>
+
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-datepicker.css')}" type="text/css">
 </head>
 <body>
@@ -24,13 +26,12 @@
 
        <g:if test="${actionName =="createWorkbook"}">
        <g:actionSubmit class= "btn btn-outline-success" actionName="create"  controller="workbook" action ="save" value="Save All"/>
-       %{--<%--  <button type="button" class= "btn btn-outline-success" id ="saveAll" >Save All</button>--%>--}%
+
 
 
 
         </g:if>
         <g:else>
-        <%-- <g:actionSubmit class= "btn btn-outline-success"  controller="workbook" action ="save" value="Update"/>--%>
              <button type="button" class= "btn btn-outline-success" id ="saveAll" >Update</button>
          </g:else>
 
@@ -38,7 +39,7 @@
      <div class="content">
          <div class="col-5">
          <label for="firstName">First Name</label>
-         <g:field type="text" id="firstName" class="form-control col-xs-3" name="firstName" value="${workbook.firstName}"/>
+         <g:field type="text" id="firstName" class="form-control col-xs-3" placeholder="E.G. JOSE PROTASIO JR" name="firstName" value="${workbook.firstName}"/>
              <g:hasErrors bean="${workbook}" field="firstName">
                  <g:eachError bean="${workbook}" field="firstName">
                      <p style="color: red;"><g:message error="${it}"/></p>
@@ -47,7 +48,7 @@
          </div>
          <div class="col-5">
          <label for="lastName">Last Name</label>
-         <g:field type="text" id="lastName" class="form-control" name="lastName" value="${workbook.lastName}"/>
+         <g:field type="text" id="lastName" class="form-control" name="lastName" placeholder="E.G. MERCADO RIZAL" value="${workbook.lastName}"/>
              <g:hasErrors bean="${workbook}" field="lastName">
                  <g:eachError bean="${workbook}" field="lastName">
                      <p style="color: red;"><g:message error="${it}"/></p>
@@ -93,7 +94,7 @@
          <div class="col-3">
          <label for="phone">Phone </label>
          <%--<g:field type="number" maxlength="11" class="form-control" name="phone" value="${workbook.phone}"/><br/>--%>
-             <input type="text" maxlength="11" name="phone" id="phone" class="form-control" value="${workbook.phone}" /> <br/>
+             <input type="text" maxlength="11" name="phone" id="phone" class="form-control" placeholder="632XXXXXXXXXX/639XXXXXXXXXX" value="${workbook.phone}" /> <br/>
              <g:hasErrors bean="${workbook}" field="phone">
                  <g:eachError bean="${workbook}" field="phone">
                      <p style="color: red;"><g:message error="${it}"/></p>
