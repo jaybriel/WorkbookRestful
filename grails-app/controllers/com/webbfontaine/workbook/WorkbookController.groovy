@@ -47,9 +47,9 @@ class WorkbookController {
         def sid = session.id
         sessionService.addToSessionStore(sid,workbook)
         sessionService.getObjectFromSession(sid)
-        params.instId = sid
+        params.sessionId = sid
         if (workbook) {
-            render(view:'/workbook/create',model:[workbook: workbook,workplaceList: workbook.workplaces,actionName: actionName],id:sid )
+            render(view:'/workbook/create',model:[workbook: workbook,workplaceList: workbook.workplaces,actionName: actionName,sessionId: params.sessionId],id:sid )
         } else {
             redirect action: 'index'
         }
@@ -71,7 +71,7 @@ class WorkbookController {
 
 
                 def workbookList = workbookService.list()
-                render(model:[workbookList:workbookList,errorBean:workbook],view:'index')
+                render(model:[workbookList:workbookList,errorBean:workbook,sessionId: sessionId],view:'index')
 
             }
         else{

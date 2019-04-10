@@ -22,7 +22,8 @@ class WorkplaceController {
         Workbook workbook = (Workbook)sessionService.getObjectFromSession(params.sessionId)
         def workplace = workplaceService.retrieveWorkplace(workbook,params)
         if(workplace){
-            render(view: '/workbook/template/_workplaceform',model: [workplace:workplace,sessionId: params.sessionId])
+//            render(view: '/workbook/template/_workplaceform',model: [workplace:workplace,sessionId: params.sessionId])
+            render(template: '/workbook/template/workplaceform',model: [workplace:workplace,sessionId: params.sessionId])
         }
     }
 
@@ -45,8 +46,15 @@ class WorkplaceController {
     def delete(){
 
             Workbook workbook = (Workbook) sessionService.getObjectFromSession(params.sessionId)
+        if(workbook)
+        {
             workplaceService.deleteWorkplace(workbook,params)
             render(template:'/workbook/template/workplacelist',model:[workbook:workbook,workplaceList:workbook.workplaces, sessionId: params.sessionId])
+
+        }
+        else{
+
+        }
     }
 
     def save(){
@@ -70,11 +78,14 @@ class WorkplaceController {
         {
             workbook.addToWorkplaces(workplace)
             sessionService.addToSessionStore(params.sessionId,workbook)
+//            workplaceService.saveWorkplace(workbook,workplace,params.sessionId)
             render(template:'/workbook/template/workplacelist',model:[workbook:workbook,workplaceList:workbook.workplaces, sessionId: params.sessionId])
         }
         else{
-           workplace.errors.rejectValue('endDate','end date should be after start date')
-           render(template:'/workbook/template/workplaceform',model:[workbook:workbook,workplace:workplace,workplaceList:workbook.workplaces, sessionId: params.sessionId,actionName: 'createWorkplace'])
+//           workplace.errors.rejectValue('cmpCode','fill out company code and should be unique')
+//           workplace.errors.rejectValue('cmpName','fill out company name and should be unique')
+//           workplace.errors.rejectValue('ctyDesc','fill out city description')
+       render(template:'/workbook/template/workplaceform',model:[workbook:workbook,workplace:workplace,workplaceList:workbook.workplaces, sessionId: params.sessionId,actionName: 'createWorkplace'])
        }
 
     }

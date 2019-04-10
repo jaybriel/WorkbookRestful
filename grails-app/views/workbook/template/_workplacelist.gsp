@@ -110,9 +110,10 @@
                 <g:if test="${actionName =="view"}">
                 </g:if>
                 <g:else>
-                    <td><button type="button" class="btn btn-default" rank = "${workplace.rank}" id="deleteWorkplace_${workplace.rank}" value="${workplace.rank}" onclick="deleteWorkplace(${workplace.rank})">Delete</button></td>
-                    <td><button type="button" class="btn btn-default" rank = "${workplace.rank}" id="updateWorkplace_${workplace.rank}" value="${workplace.rank}" onclick="editWorkplace(${workplace.rank})">Update</button></td>
-                    <td><button type="button" class="btn btn-default" rank = "${workplace.rank}" id="viewWorkplace_${workplace.rank}" value="${workplace.rank}" onclick="viewWorkplace(${workplace.rank})">View</button></td>
+                    <td><button type="button" class="btn btn-warning" rank = "${workplace.rank}" id="updateWorkplace_${workplace.rank}" value="${workplace.rank}" onclick="editWorkplace(${workplace.rank})">Update</button></td>
+
+                    <td><button type="button" class="btn btn-danger" rank = "${workplace.rank}" id="deleteWorkplace_${workplace.rank}" value="${workplace.rank}" onclick="deleteWorkplace(${workplace.rank})">Delete</button></td>
+                    <td><button type="button" class="btn btn-info" rank = "${workplace.rank}" id="viewWorkplace_${workplace.rank}" value="${workplace.rank}" onclick="viewWorkplace(${workplace.rank})">View</button></td>
 
                 %{--<td><button type="button" class="btn btn-default" id="updateWorkplace">Update</button></td>--}%
                 %{--<td><button type="button" class="btn btn-default" id="showWorkplace">View</button></td>--}%

@@ -1,5 +1,6 @@
-package com.webbfontaine.workbook
+package com.webbfontaine.workbook.domain
 
+import com.webbfontaine.workbook.Workplace
 import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
 

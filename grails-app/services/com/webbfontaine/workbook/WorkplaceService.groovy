@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat
 
 @Transactional
 class WorkplaceService {
+    def sessionService
 
     def list(){
         Workplace.list()
@@ -15,6 +16,7 @@ class WorkplaceService {
     def delete(id){
         Workplace.get(id).delete()
     }
+
 
     def retrieveWorkplace(Workbook workbook,def params){
         int rank = params.rank.toInteger()
@@ -30,10 +32,19 @@ class WorkplaceService {
     }
 
     def validateWorkplace(Workbook workbook,Workplace workplace) {
-        Date date1 = convertDateTime(workplace.startDate)
-        Date date2 = convertDateTime(workplace.endDate)
-        boolean correctDate = compareDateTimes(date1,date2)
-        correctDate
+        boolean correctDate
+        if(workplace.validate())
+        {
+            Date date1 = convertDateTime(workplace.startDate)
+            Date date2 = convertDateTime(workplace.endDate)
+            correctDate = compareDateTimes(date1,date2)
+            correctDate
+        }
+        else{
+            workplace.errors.rejectValue('endDate','end date should be after start date')
+
+        }
+
     }
 
 

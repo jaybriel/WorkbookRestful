@@ -20,7 +20,7 @@ class WorkbookControllerSpec extends Specification implements ControllerUnitTest
     void "test edit action with a non exsiting workbook."() {
         given:
         controller.workbookService = Stub(WorkbookService) {
-            retrieveWorkbook(_) >> null
+            retrieveWorkbookById(_) >> null
         }
 
         when:
@@ -35,7 +35,7 @@ class WorkbookControllerSpec extends Specification implements ControllerUnitTest
     void "test edit action with existing workbook"() {
         given:
         controller.workbookService = Stub(WorkbookService) {
-            retrieveWorkbook(_) >> new Workbook(firstName: "test") //add other details
+            retrieveWorkbookById(_) >> new Workbook(firstName: "test") //add other details
         }
 
         when:
@@ -60,7 +60,6 @@ class WorkbookControllerSpec extends Specification implements ControllerUnitTest
 
         then:
         view.startsWith('/workbook')
-//        model.workbookList.size() == 1
 
 
     }
@@ -103,7 +102,6 @@ class WorkbookControllerSpec extends Specification implements ControllerUnitTest
 
         then:
         response.redirectUrl.startsWith('/')
-        //view.startsWith('/workbook/save')
     }
 
     void "test delete action with existing workbook"(){
@@ -133,7 +131,7 @@ class WorkbookControllerSpec extends Specification implements ControllerUnitTest
 
     void "test create action"(){
         when:"The create action is executed"
-        controller.create()
+        controller.createWorkbook()
 
         then:
         view.startsWith('/workbook/create')

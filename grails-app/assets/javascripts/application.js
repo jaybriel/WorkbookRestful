@@ -26,25 +26,40 @@ $(function() {
 
 
 
+function calculateAge (birthDate, otherDate) {
+    birthDate = new Date(birthDate);
+    otherDate = new Date(otherDate);
 
+    var years = (otherDate.getFullYear() - birthDate.getFullYear());
+
+    if (otherDate.getMonth() < birthDate.getMonth() ||
+        otherDate.getMonth() === birthDate.getMonth() && otherDate.getDate() < birthDate.getDate()) {
+        years--;
+    }
+
+    return years;
+}
 
 
 function getBirthDate(){
     var dateOfBirth = document.getElementById("dateOfBirth").value;
 
     //alert(dateOfBirth);
-    splitString = dateOfBirth.split("-");
+   //  splitString = dateOfBirth.split("-");
+   //
+   // // alert(splitString[2]);
+   //
+   //  var yearToday = new Date().getFullYear();
+   //
+   //  var age = yearToday - splitString[0];
 
-   // alert(splitString[2]);
-
-    var yearToday = new Date().getFullYear();
-
-    var age = yearToday - splitString[0];
+    var calculatedage = calculateAge(dateOfBirth,new Date());
 
 
 
 
-    document.getElementById("age").value = age;
+    // document.getElementById("age").value = age;
+    document.getElementById("age").value = calculatedage;
 
 }
 

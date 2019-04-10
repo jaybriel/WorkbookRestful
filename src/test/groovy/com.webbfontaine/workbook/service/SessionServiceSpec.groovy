@@ -1,5 +1,6 @@
-package com.webbfontaine.workbook
+package com.webbfontaine.workbook.service
 
+import com.webbfontaine.workbook.SessionService
 import grails.testing.services.ServiceUnitTest
 import spock.lang.Specification
 

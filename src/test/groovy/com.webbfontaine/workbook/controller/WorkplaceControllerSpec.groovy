@@ -1,5 +1,6 @@
-package com.webbfontaine.workbook
+package com.webbfontaine.workbook.controller
 
+import com.webbfontaine.workbook.WorkplaceController
 import grails.testing.web.controllers.ControllerUnitTest
 import spock.lang.Specification
 

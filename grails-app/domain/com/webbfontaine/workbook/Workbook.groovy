@@ -16,12 +16,12 @@ class Workbook {
 
 
     static constraints = {
-        firstName  nullable: false
-        lastName nullable: false
-        dateOfBirth nullable: false
-        age nullable: false,range:18..65
-        passportNumber nullable: false,unique: true
-        email nullable: false,email:true, unique: true
-        phone nullable: false
+        firstName  blank: false
+        lastName blank: false
+        dateOfBirth blank: false
+        age blank: false,range:18..65
+        passportNumber blank: false,unique: true
+        email blank: false,email:true, unique: true
+        phone blank: false
     }
 }
