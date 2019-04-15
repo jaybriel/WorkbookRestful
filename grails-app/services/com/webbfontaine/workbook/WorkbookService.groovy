@@ -11,9 +11,14 @@ class WorkbookService {
         Workbook.list()
     }
 
-    def save(workbook)
+    def save(Workbook workbook)
     {
-        workbook.save()
+        workbook.save(flush:true)
+    }
+
+    def update(Workbook workbook)
+    {
+        workbook.merge(flush:true)
     }
 
     def delete(id)

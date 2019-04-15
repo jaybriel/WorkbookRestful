@@ -11,6 +11,7 @@ import com.webbfontaine.workbook.WorkbookService
 class WorkbookControllerSpec extends Specification implements ControllerUnitTest<WorkbookController>, DataTest {
 
     def setup() {
+
         mockDomain Workbook
     }
 

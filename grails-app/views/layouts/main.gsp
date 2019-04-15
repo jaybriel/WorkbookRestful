@@ -8,13 +8,10 @@
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <asset:link rel="icon" href="favicon.ico" type="image/x-ico"/>
-
     <asset:stylesheet src="application.css"/>
-    <asset:javascript src="bootstrap-datepicker.js"/>
-    <asset:javascript src="jquery-3.3.1.min.js.js"/>
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-datepicker.css')}" type="text/css">
-
+    <asset:javascript src="application.js"/>
     <g:layoutHead/>
+
 </head>
 
 <body>
@@ -22,18 +19,8 @@
 
 
 <g:layoutBody/>
-<!--
-<div class="footer row" role="contentinfo">
-    <div class="col">
-        <a href="http://guides.grails.org" target="_blank">
             <asset:image src="advancedgrails.svg" alt="Grails Guides" class="float-left"/>
-        </a>
-        <strong class="centered"><a href="http://guides.grails.org" target="_blank">Grails Guides</a></strong>
-        <p>Building your first Grails app? Looking to add security, or create a Single-Page-App? Check out the <a href="http://guides.grails.org" target="_blank">Grails Guides</a> for step-by-step tutorials.</p>
 
-    </div>
-    <div class="col">
-        <a href="http://docs.grails.org" target="_blank">
             <asset:image src="documentation.svg" alt="Grails Documentation" class="float-left"/>
         </a>
         <strong class="centered"><a href="http://docs.grails.org" target="_blank">Documentation</a></strong>
@@ -55,7 +42,7 @@
     <g:message code="spinner.alt" default="Loading&hellip;"/>
 </div>
 
-<asset:javascript src="application.js"/>
+
 
 </body>
 </html>

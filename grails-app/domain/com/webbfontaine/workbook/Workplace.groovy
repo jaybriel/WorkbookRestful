@@ -4,23 +4,23 @@ class Workplace {
 
     long id
     int rank
-    long cmpCode
+    String cmpCode
     String cmpName
-    int ctyCode
+    String ctyCode
     String ctyDesc
     String startDate
     String endDate
     static constraints = {
-        cmpCode nullable:false, unique: true
-        cmpName nullable:false,unique: true
-
-        id nullable:false
-        ctyDesc nullable:false
-        startDate nullable:false,unique: true
-        endDate nullable:false,unique: true
+        cmpCode unique: true,blank: false,nullable: false
+        cmpName nullable: true, unique: true
+        id nullable: false
+        ctyCode nullable: false
+        ctyDesc nullable: true
+        startDate nullable: false, unique: true
+        endDate nullable: false, unique: true
 
     }
 
-    static belongsTo = [workbook:Workbook]
+    static belongsTo = [workbook: Workbook]
 
 }

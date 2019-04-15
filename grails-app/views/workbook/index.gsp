@@ -11,16 +11,17 @@
 <html>
 <head>
     <title></title>
-    <meta name = "layout" content = "main" />
+    <meta name="layout" content="main"/>
 </head>
 
 <body>
-    <div class = "nav" role = "navigation">
-        <ul>
-            <li><g:link class="create" action = "createWorkbook">Create</g:link></li>
-        </ul>
-    </div>
-    <div id = "list-workbook" class="content scaffold-list" role = "main">
+<div class="nav" role="navigation">
+    <ul>
+        <li><g:link class="create" action="createWorkbook">Create</g:link></li>
+    </ul>
+</div>
+
+<div id="list-workbook" class="content scaffold-list" role="main">
 
     <table>
         <tr>
@@ -35,27 +36,33 @@
             <th></th>
             <th></th>
         </tr>
-<g:form method="GET">
-        <g:each in = "${workbookList}" var="workbook">
-        <tr>
+        <g:form method="GET">
+            <g:each in="${workbookList}" var="workbook">
+                <tr>
 
-            <td>${workbook.firstName}</td>
-            <td>${workbook.lastName}</td>
-            <td>${workbook.dateOfBirth}</td>
-            <td>${workbook.age}</td>
-            <td>${workbook.passportNumber}</td>
-            <td>${workbook.email}</td>
-            <td>${workbook.phone}</td>
-            <td><g:link action = "edit" controller="workbook"  params = "${[id:workbook.id,actionName:'edit']}"><button type ="button" class="btn btn-warning"> Update </button></g:link></td>
-            <td><g:link class="delete" onclick="return confirm('Are you sure?')"  action="delete" params = "${[id:workbook.id]}"><button type ="button" class="btn btn-danger"> Delete </button></g:link></td>
-            <td><g:link params = "${[id:workbook.id]}" action ="view" controller ="workbook" class="view"><button type ="button" class="btn btn-info"> View </button></g:link></td>
+                    <td>${workbook.firstName}</td>
+                    <td>${workbook.lastName}</td>
+                    <td>${workbook.dateOfBirth}</td>
+                    <td>${workbook.age}</td>
+                    <td>${workbook.passportNumber}</td>
+                    <td>${workbook.email}</td>
+                    <td>${workbook.phone}</td>
+                    <td><g:link action="edit" controller="workbook"
+                                params="${[id: workbook.id, actionName: 'edit']}"><button type="button"
+                                                                                          class="btn btn-warning">Update</button></g:link>
+                    </td>
+                    <td><g:link class="delete" onclick="return confirm('Are you sure?')" action="delete"
+                                params="${[id: workbook.id]}"><button type="button"
+                                                                      class="btn btn-danger">Delete</button></g:link>
+                    </td>
+                    <td><g:link params="${[id: workbook.id]}" action="view" controller="workbook" class="view"><button
+                            type="button" class="btn btn-info">View</button></g:link></td>
 
-
-        </tr>
-        </g:each>
-</g:form>
+                </tr>
+            </g:each>
+        </g:form>
     </table>
-    </div>
+</div>
 
 </body>
 </html>

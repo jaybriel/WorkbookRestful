@@ -9,89 +9,68 @@
 <html>
 <head>
     <title></title>
-    <meta name = "layout" content ="main"/>
-    <g:javascript library='jquery' />
-    <asset:javascript src="jquery-3.3.1.min.js.js"/>
-    <asset:javascript src="bootstrap-datepicker.js"/>
-
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-datepicker.css')}" type="text/css">
+    <meta name="layout" content="main"/>
 </head>
-<body>
-<form id="workplaceForm" method="POST">
-    <fieldset>
-        <g:hiddenField name="sessionId" id="sessionId" value="${params.sessionId}" />
-        <g:hiddenField name="id"  value="${workplace.id}" />
-        <g:hiddenField name="rank"  value="${workplace.rank}" />
-        <div class="content">
-            <div class="col-1">
-                <label for="cmpCode">Company Code</label>
-                <g:field type ="number" id="cmpCode" class="form-control col-xs-3" name="cmpCode" value="${workplace.cmpCode}"/>
-                <g:hasErrors bean="${workplace}" field="cmpCode">
-                    <g:eachError bean="${workplace}" field="cmpCode">
-                        <p style="color: red;"><g:message error="${it}"/></p>
-                    </g:eachError>
-                </g:hasErrors>
-            </div>
-            <div class="col-5">
-                <label for="cmpName">Company Name</label>
-                <g:field type="text" id="cmpName" class="form-control" name="cmpName" value="${workplace.cmpName}"/>
-                <g:hasErrors bean="${workplace}" field="cmpName">
-                    <g:eachError bean="${workplace}" field="cmpName">
-                        <p style="color: red;"><g:message error="${it}"/></p>
-                    </g:eachError>
-                </g:hasErrors>
-            </div>
 
-            <div class="col-1">
-                <label for="ctyCode">City Code</label>
-                <g:field type="number" id="ctyCode" class="form-control" name="ctyCode" value="${workplace.ctyCode}"  />
-                <g:hasErrors bean="${workplace}" field="ctyCode">
-                    <g:eachError bean="${workplace}" field="ctyCode">
-                        <p style="color: red;"><g:message error="${it}"/></p>
-                    </g:eachError>
-                </g:hasErrors>
-            </div>
-            <div class="col-2">
-                <label id="ctyDesc">City Description</label>
-                <g:textArea name="ctyDesc" class="form-control" value="${workplace.ctyDesc}"/>
-                <g:hasErrors bean="${workplace}" field="ctyDesc">
-                    <g:eachError bean="${workplace}" field="ctyDesc">
-                        <p style="color: red;"><g:message error="${it}"/></p>
-                    </g:eachError>
-                </g:hasErrors>
-            </div>
-            <div class="col-3">
-                <label for="startDate">Start Date</label>
-                <g:textField data-provide="datepicker" data-date-format="yyyy-mm-dd" class="datepicker form-control" onchange="getBirthDate();"  name="startDate" id ="startDate" value="${workplace.startDate}"/>
-                <g:hasErrors bean="${workplace}" field="startDate">
-                    <g:eachError bean="${workplace}" field="startDate">
-                        <p style="color: red;"><g:message error="${it}"/></p>
-                    </g:eachError>
-                </g:hasErrors>
-            </div>
-            <div class="col-3">
-                <label for="endDate">End Date</label>
-                <g:textField data-provide="datepicker" data-date-format="yyyy-mm-dd" class="datepicker form-control" onchange="getBirthDate();"  name="endDate" id ="endDate" value="${workplace.endDate}"/>
-                <g:hasErrors bean="${workplace}" field="endDate">
-                    <g:eachError bean="${workplace}" field="endDate">
-                        <p style="color: red;"><g:message error="${it}"/></p>
-                    </g:eachError>
-                </g:hasErrors>
-            </div>
+<body>
+<g:hasErrors bean="${errorBean}">
+    <div class="container alert alert-danger">
+        <ul role="alert">
+            <g:eachError bean="${errorBean}" var="error">
+                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message
+                        error="${error}"/></li>
+            </g:eachError>
+        </ul>
+    </div>
+</g:hasErrors>
+<fieldset>
+    <g:hiddenField name="sessionId" id="sessionId" value="${params.sessionId}"/>
+    <g:hiddenField name="id" value="${workplace.id}"/>
+    <g:hiddenField name="rank" value="${workplace.rank}"/>
+
+    <div class="content">
+        <div class="col-5">
+            <label for="cmpCode"><g:message code="workplace.company.label" default="Company"/></label>
+            <g:countrySelect class="form-control" name="cmpCode" from="${['WFG', 'IBM', 'PBCOM']}"
+                             onchange="checkvalue();" valueMessagePrefix="workplace.companyCode"/>
+        </div>
+
+        <div class="col-5">
+            <label for="cmpName">Company Name</label>
+            <g:field type="text" id="cmpName" class="form-control" placeholder="Webb Fontaine Group Manila Branch"
+                     name="cmpName" value="${workplace.cmpName}"/>
+        </div>
+
+        <div class="col-5">
+            <label for="ctyCode"><g:message code="workplace.city.label" default="Company"/></label>
+            <g:select name="ctyCode" from="['MNL', 'MKT', 'BGC']" class="form-control"
+                      value="${workplace.ctyCode}"/>
+        </div>
+
+        <div class="col-5">
+            <label id="ctyDesc">City Description</label>
+            <g:textArea name="ctyDesc" class="form-control" placeholder="Enter city description here"
+                        value="${workplace.ctyDesc}"/>
+        </div>
+
+        <div class="col-5">
+            <label for="startDate">Start Date</label>
+            <g:textField data-provide="datepicker" placeholder="click here to select date in calendar"
+                         data-date-format="yyyy-mm-dd" class="datepicker form-control"
+                         onchange="getBirthDate();" name="startDate" id="startDate" value="${workplace.startDate}"/>
+        </div>
+
+        <div class="col-5">
+            <label for="endDate">End Date</label>
+            <g:textField data-provide="datepicker" placeholder="click here to select date in calendar"
+                         data-date-format="yyyy-mm-dd" class="datepicker form-control"
+                         onchange="getBirthDate();" name="endDate" id="endDate" value="${workplace?.endDate}"/>
+        </div>
 
         <div class="col-3">
-            <g:if test="${actionName =="createWorkplace"}">
-
-                <button type="button" class= "btn btn-outline-success" id ="saveWorkplace" >Add</button>
-            </g:if>
-            <g:else>
-                <button type="button" class= "btn btn-outline-success" id ="updateWorkplace" >Update</button>
-                %{--<g:actionSubmit class= "btn btn-outline-success"  controller="workplace" action ="showList" value="Update"/>--}%
-            </g:else>
-
+            <button type="button" class="btn btn-outline-success" id="saveWorkplace">Add</button>
         </div>
-        </div>
-    </fieldset>
-</form>
+    </div>
+</fieldset>
 </body>
 </html>

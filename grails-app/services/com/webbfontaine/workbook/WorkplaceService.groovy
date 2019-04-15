@@ -8,65 +8,104 @@ import java.text.SimpleDateFormat
 class WorkplaceService {
     def sessionService
 
-    def list(){
+    def list() {
         Workplace.list()
     }
 
 
-    def delete(id){
+    def delete(id) {
         Workplace.get(id).delete()
     }
 
 
-    def retrieveWorkplace(Workbook workbook,def params){
+    def retrieveWorkplace(Workbook workbook, def params) {
         int rank = params.rank.toInteger()
-        def workplaceToUpdate = workbook.workplaces.find{it.rank == rank}
+        def workplaceToUpdate = workbook.workplaces.find { it.rank == rank }
         workplaceToUpdate
 
     }
 
     def updateWorkplace(Workbook workbook, def params) {
         int rank = params.rank.toInteger()
-        workbook.workplaces.find{it.rank==rank}.properties = params
+        workbook.workplaces.find { it.rank == rank }.properties = params
         workbook
     }
 
-    def validateWorkplace(Workbook workbook,Workplace workplace) {
-        boolean correctDate
-        if(workplace.validate())
+
+    def validateDate(Workbook workbook, Workplace workplace) {
+        if(workplace.startDate != null && workplace.endDate != null)
         {
             Date date1 = convertDateTime(workplace.startDate)
             Date date2 = convertDateTime(workplace.endDate)
-            correctDate = compareDateTimes(date1,date2)
-            correctDate
+            if (date1.after(date2)) {
+                workplace.errors.rejectValue('startDate', 'workplace.startDate.overlap')
+            }
+            return !date1.after(date2)
         }
         else{
-            workplace.errors.rejectValue('endDate','end date should be after start date')
-
+            return false
         }
 
     }
 
 
 
+    def checkOverlapDateWithPrevDate(Workbook workbook,Workplace workplace,int i)
+    {
+        Date startDate = convertDateTime(workplace.startDate)
+        Date endDate = convertDateTime(workplace.endDate)
+        Date prevStartDate = convertDateTime(workbook.workplaces[i].startDate)
+        Date prevEndDate = convertDateTime(workbook.workplaces[i].endDate)
+
+        if(startDate.before(prevEndDate) && prevStartDate.before(endDate))
+        {
+            workplace.errors.rejectValue('endDate', 'workplace.endDate.overlap')
+            return false
+        }
+        else
+        {
+            return true
+        }
+
+    }
+    def validateWorkplace(Workbook workbook, Workplace workplace) {
+        if (workplace.validate()) {
+            if (workbook.workplaces != null) {
+                for (int i = 0; workbook.workplaces.size(); i++) {
+
+
+                    if(validateDate(workbook,workplace))
+                    {
+                        return checkOverlapDateWithPrevDate(workbook,workplace,i)
+                    }
+                    else
+                    {
+                        return validateDate(workbook,workplace)
+                    }
+
+
+                }
+            } else {
+                return validateDate(workbook, workplace)
+
+            }
+        }
+        else{
+            return validateDate(workbook,workplace)
+        }
+    }
+
     def deleteWorkplace(Workbook workbook, def params) {
-            int rank =  params.rank.toInteger()
-            def workplaceToRemove = workbook.workplaces.find{it.rank == rank}
-            workbook.removeFromWorkplaces(workplaceToRemove)
-            workbook
+        int rank = params.rank.toInteger()
+        def workplaceToRemove = workbook.workplaces.find { it.rank == rank }
+        workbook.removeFromWorkplaces(workplaceToRemove)
+        workbook
     }
 
 
-
-
-    def convertDateTime(String element){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd")
+    def convertDateTime(String element) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd")
         return dateFormat.parse(element)
     }
 
-    def compareDateTimes(Date date1,Date date2)
-    {
-        if(date1.before(date2))
-            return true
-    }
 }
