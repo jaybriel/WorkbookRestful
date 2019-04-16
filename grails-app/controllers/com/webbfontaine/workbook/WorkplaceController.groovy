@@ -59,16 +59,17 @@ class WorkplaceController {
         }
 
         def workplace = new Workplace(params)
-        workplace.workbook = workbook
+
         workplace.rank = rank
 
-
+        workplace.clearErrors()
         if (workplaceService.validateWorkplace(workbook, workplace)) {
+            workplace.workbook = workbook
             workbook.addToWorkplaces(workplace)
-            sessionService.addToSessionStore(params.sessionId, workbook)
-            render(template: '/workbook/template/workplacelist', model: [errorBean: workplace,workbook: workbook,workplace: workplace, workplaceList: workbook.workplaces, sessionId: params.sessionId])
+                        sessionService.addToSessionStore(params.sessionId, workbook)
+            render(template: '/workbook/template/workplacelist', model: [wpErrorBean: workplace,workbook: workbook,workplace: workplace, workplaceList: workbook.workplaces, sessionId: params.sessionId])
         } else {
-            render(template: '/workbook/template/workplaceform', model: [errorBean: workplace,workbook: workbook, workplace: workplace, workplaceList: workbook.workplaces, sessionId: params.sessionId, actionName: 'createWorkplace'])
+            render(template: '/workbook/template/workplaceform', model: [wpErrorBean: workplace,workbook: workbook, workplace: workplace, workplaceList: workbook.workplaces, sessionId: params.sessionId, actionName: 'createWorkplace'])
         }
 
     }

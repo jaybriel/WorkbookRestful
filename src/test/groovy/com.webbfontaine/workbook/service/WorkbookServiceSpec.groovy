@@ -23,14 +23,14 @@ class WorkbookServiceSpec extends  HibernateSpec implements ServiceUnitTest<Work
 
     void "test retrieveWorkbook action with existing id"(){
         given:
-        new Workbook(firstName:"test",lastName:"test",dateOfBirth:"test",age: "test",passportNumber: "test",email: "test",phone: "test").save(flush:true)
+        new Workbook(id:1,firstName:"test",lastName:"test",dateOfBirth:"test",age: 21,passportNumber: "E1234567",email: "jaybrielsomcio@gmail.com",phone: "09452995267").save(flush:true)
         def result
 
         when:
-        result = service.retrieveWorkbook(1)
+        result = service.retrieveWorkbookById(1)
 
         then:
-        result.firstName == "test"
+        result.firstName =="test"
     }
 
     void "test retrieveWorkbook action with non existing id"(){
@@ -39,7 +39,7 @@ class WorkbookServiceSpec extends  HibernateSpec implements ServiceUnitTest<Work
         def result
 
         when:
-        result = service.retrieveWorkbook(null)
+        result = service.retrieveWorkbookById(null)
 
         then:
         result == null
@@ -47,7 +47,7 @@ class WorkbookServiceSpec extends  HibernateSpec implements ServiceUnitTest<Work
 
     void "test list action"(){
         given:
-        def workbookList = [new Workbook(firstName:"test",lastName:"test",dateOfBirth:"test",age: "test",passportNumber: "test",email: "test",phone: "test").save(flush:true),new Workbook(firstName:"test",lastName:"test",dateOfBirth:"test",age: "test",passportNumber: "test",email: "test",phone: "test").save(flush:true)]
+        def workbookList = [new Workbook(firstName:"test",lastName:"test",dateOfBirth:"test",age: 21,passportNumber: "E12334567",email: "jaybrielsomcio@gmail.com",phone: "09452995267").save(flush:true),new Workbook(firstName:"test",lastName:"test",dateOfBirth:"test",age: 21,passportNumber: "E1233344",email: "jaybrielsomcio@yahoo.com",phone: "09452995267").save(flush:true)]
         def result
 
         when:
@@ -61,7 +61,7 @@ class WorkbookServiceSpec extends  HibernateSpec implements ServiceUnitTest<Work
 
     void "test save action with existing workbook"(){
         given:
-        def workbook = new Workbook(firstName:"test",lastName:"test",dateOfBirth:"test",age: "test",passportNumber: "test",email: "test",phone: "test").save(flush:true)
+        def workbook = new Workbook(firstName:"test",lastName:"test",dateOfBirth:"test",age: 21,passportNumber: "E1234567",email: "jaybrielsomcio@gmail.com",phone: "09452665267").save(flush:true)
         def result
 
         when:
@@ -86,7 +86,7 @@ class WorkbookServiceSpec extends  HibernateSpec implements ServiceUnitTest<Work
 
     void "test delete action with existing id"(){
         given:
-        def workbook = new Workbook(id:1,firstName:"test",lastName:"test",dateOfBirth:"test",age: "test",passportNumber: "test",email: "test",phone: "test").save(flush:true)
+        def workbook = new Workbook(id:1,firstName:"test",lastName:"test",dateOfBirth:"test",age: 21,passportNumber: "E1234567",email: "jaybrielsomcio@gmail.com",phone: "09452995267").save(flush:true)
         def result
 
         when:

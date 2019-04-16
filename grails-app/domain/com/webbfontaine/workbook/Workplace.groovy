@@ -11,8 +11,8 @@ class Workplace {
     String startDate
     String endDate
     static constraints = {
-        cmpCode unique: true,blank: false,nullable: false
-        cmpName nullable: true, unique: true
+        cmpCode blank: false,nullable: false
+        cmpName nullable: true
         id nullable: false
         ctyCode nullable: false
         ctyDesc nullable: true

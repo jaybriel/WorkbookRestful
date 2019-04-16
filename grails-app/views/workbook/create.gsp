@@ -41,10 +41,10 @@
         <div class="tab-content">
 
             <div role="tabpanel" class="tab-pane active" id="workbook"><g:render template="template/workbookform"
-                                                                                 model="[workbook: workbook, sessionId: params.sessionId, action: 'createWorkbook', errorBean: errorBean]"/></div>
+                                                                                 model="[workbook: workbook, action: 'createWorkbook', errorBean: errorBean]"/></div>
 
             <div role="tabpanel" class="tab-pane" id="workplaceList"><g:render template="template/workplacelist"
-                                                                               model="[workbook: workbook, workplaceList: workbook.workplaces, sessionId: params.sessionId, action: 'showList', errorBean: errorBean]"/></div>
+                                                                               model="[workbook: workbook, workplaceList: workbook.workplaces, sessionId: params.sessionId, action: 'showList', wpErrorBean: wpErrorBean]"/></div>
         </div>
     </g:form>
 </div>

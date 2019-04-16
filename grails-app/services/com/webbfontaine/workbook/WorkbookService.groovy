@@ -16,11 +16,6 @@ class WorkbookService {
         workbook.save(flush:true)
     }
 
-    def update(Workbook workbook)
-    {
-        workbook.merge(flush:true)
-    }
-
     def delete(id)
     {
         Workbook.get(id).delete()

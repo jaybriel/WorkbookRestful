@@ -29,10 +29,6 @@ function calculateAge (birthDate, otherDate) {
 }
 
 
-function checkvalue(){
-  var code= $("#cmpCode").val();
-  alert(code);
-}
 
 function getBirthDate(){
     var dateOfBirth = document.getElementById("dateOfBirth").value;
@@ -227,6 +223,8 @@ $(document).on('click', '#saveWorkplace', function () {
             "sessionId": $("#sessionId").val(),
             "rank": $("#rank").val(),
             "ctyCode": $("#ctyCode").val(),
+            "cmpName": $("#cmpName").val(),
+            "ctyDesc": $("#ctyDesc").val(),
             "cmpCode": $("#cmpCode").val(),
             "startDate": $("#startDate").val(),
             "endDate": $("#endDate").val()

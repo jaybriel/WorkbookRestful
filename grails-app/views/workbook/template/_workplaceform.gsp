@@ -13,10 +13,10 @@
 </head>
 
 <body>
-<g:hasErrors bean="${errorBean}">
-    <div class="container alert alert-danger">
+<g:hasErrors bean="${wpErrorBean}">
+    <div id="workplacediv" class="container alert alert-danger">
         <ul role="alert">
-            <g:eachError bean="${errorBean}" var="error">
+            <g:eachError bean="${wpErrorBean}" var="error">
                 <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message
                         error="${error}"/></li>
             </g:eachError>
@@ -24,7 +24,6 @@
     </div>
 </g:hasErrors>
 <fieldset>
-    <g:hiddenField name="sessionId" id="sessionId" value="${params.sessionId}"/>
     <g:hiddenField name="id" value="${workplace.id}"/>
     <g:hiddenField name="rank" value="${workplace.rank}"/>
 
@@ -43,25 +42,25 @@
 
         <div class="col-5">
             <label for="ctyCode"><g:message code="workplace.city.label" default="Company"/></label>
-            <g:select name="ctyCode" from="['MNL', 'MKT', 'BGC']" class="form-control"
+            <g:select name="ctyCode" from="['MANILA', 'MAKATI', 'TAGUIG','MANDALUYONG']" class="form-control"
                       value="${workplace.ctyCode}"/>
         </div>
 
         <div class="col-5">
-            <label id="ctyDesc">City Description</label>
+            <label id="ctyDesc"><g:message code="workplace.cityDesc.label" default="Company"/></label>
             <g:textArea name="ctyDesc" class="form-control" placeholder="Enter city description here"
                         value="${workplace.ctyDesc}"/>
         </div>
 
         <div class="col-5">
-            <label for="startDate">Start Date</label>
+            <label for="startDate"><g:message code="workplace.startDate.label" default="Company"/></label>
             <g:textField data-provide="datepicker" placeholder="click here to select date in calendar"
                          data-date-format="yyyy-mm-dd" class="datepicker form-control"
                          onchange="getBirthDate();" name="startDate" id="startDate" value="${workplace.startDate}"/>
         </div>
 
         <div class="col-5">
-            <label for="endDate">End Date</label>
+            <label for="endDate"><g:message code="workplace.endDate.label" default="Company"/></label>
             <g:textField data-provide="datepicker" placeholder="click here to select date in calendar"
                          data-date-format="yyyy-mm-dd" class="datepicker form-control"
                          onchange="getBirthDate();" name="endDate" id="endDate" value="${workplace?.endDate}"/>

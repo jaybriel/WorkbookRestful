@@ -52,15 +52,23 @@ class WorkplaceService {
 
     def checkOverlapDateWithPrevDate(Workbook workbook,Workplace workplace,int i)
     {
-        Date startDate = convertDateTime(workplace.startDate)
-        Date endDate = convertDateTime(workplace.endDate)
-        Date prevStartDate = convertDateTime(workbook.workplaces[i].startDate)
-        Date prevEndDate = convertDateTime(workbook.workplaces[i].endDate)
-
-        if(startDate.before(prevEndDate) && prevStartDate.before(endDate))
+        if(workbook.workplaces.size() > 0)
         {
-            workplace.errors.rejectValue('endDate', 'workplace.endDate.overlap')
-            return false
+            Date startDate = convertDateTime(workplace.startDate)
+            Date endDate = convertDateTime(workplace.endDate)
+            Date prevStartDate = convertDateTime(workbook.workplaces[i].startDate)
+            Date prevEndDate = convertDateTime(workbook.workplaces[i].endDate)
+
+            if(startDate.before(prevEndDate) && prevStartDate.before(endDate))
+            {
+                workplace.errors.rejectValue('endDate', 'workplace.endDate.overlap')
+                return false
+            }
+            else
+            {
+                return true
+            }
+
         }
         else
         {
@@ -74,7 +82,7 @@ class WorkplaceService {
                 for (int i = 0; workbook.workplaces.size(); i++) {
 
 
-                    if(validateDate(workbook,workplace))
+                    if(validateDate(workbook,workplace) || workbook.workplaces.size()  > 0)
                     {
                         return checkOverlapDateWithPrevDate(workbook,workplace,i)
                     }

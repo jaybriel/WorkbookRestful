@@ -52,20 +52,7 @@ class WorkbookController {
         }
     }
 
-    def update() {
-        def sessionId = params.sessionId
-        def workbook = workbookService.retrieveWorkbookBySessionId(params.sessionId)
 
-
-        bindData(workbook, params)
-        workbookService.update(workbook)
-        if (!workbook.hasErrors()) {
-            render(model: [workplaceList: workbook.workplaces, workbookList: workbook.findAll(), workbook: workbook, errorBean: workbook, sessionId: sessionId], view: '/workbook/index')
-
-        } else {
-            render(model: [workbook: workbook, errorBean: workbook, actionName: 'createWorkbook', sessionId: sessionId], view: '/workbook/create')
-        }
-    }
 
 
     def save() {
@@ -74,7 +61,7 @@ class WorkbookController {
         def sessionId = params.sessionId
         def workbook = workbookService.retrieveWorkbookBySessionId(params.sessionId)
 
-
+        workbook.clearErrors()
         bindData(workbook, params)
         workbookService.save(workbook)
         if (!workbook.hasErrors()) {

@@ -87,6 +87,7 @@
     <tr>
 
         <g:each status="i" in="${workplaceList}" var="workplace">
+            <td></td>
             <td><g:hiddenField name="id_${workplace.id}" id="id_${workplace.id}" value="${workplace.id}"/></td>
             <td><g:hiddenField name="rank_${workplace.rank}" id="rank_${workplace.rank}"
                                value="${workplace.rank}"/></td>
