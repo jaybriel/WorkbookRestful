@@ -2,14 +2,12 @@
 grails:
     profile: web
     codegen:
-        defaultPackage: com.webbfontaine.workbook
+        defaultPackage: workbook
     gorm:
         reactor:
             # Whether to translate GORM events into Reactor events
             # Disabled by default for performance reasons
             events: false
-server:
-    contextPath: '/workbook'
 info:
     app:
         name: '@info.app.name@'
@@ -30,6 +28,12 @@ endpoints:
 
 ---
 grails:
+    databinding:
+        dateFormats:
+            - 'yyyy-MM-dd'
+
+---
+grails:
     mime:
         disable:
             accept:
@@ -46,27 +50,30 @@ grails:
             csv: text/csv
             form: application/x-www-form-urlencoded
             html:
-              - text/html
-              - application/xhtml+xml
+                - text/html
+                - application/xhtml+xml
             js: text/javascript
             json:
-              - application/json
-              - text/json
+                - application/json
+                - text/json
             multipartForm: multipart/form-data
             pdf: application/pdf
             rss: application/rss+xml
             text: text/plain
             hal:
-              - application/hal+json
-              - application/hal+xml
+                - application/hal+json
+                - application/hal+xml
             xml:
-              - text/xml
-              - application/xml
+                - text/xml
+                - application/xml
     urlmapping:
         cache:
             maxsize: 1000
     controllers:
         defaultScope: singleton
+        upload:
+          maxFileSize: 2000000
+          maxRequestSize: 2000000
     converters:
         encoding: UTF-8
     views:
@@ -100,8 +107,12 @@ dataSource:
 environments:
     development:
         dataSource:
-            dbCreate: create-drop
-            url: jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            dbCreate: update
+            url: jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000
+        dbconsole:
+            enabled: true
+            urlRoot: '/admin/dbconsole'
+
     test:
         dataSource:
             dbCreate: update

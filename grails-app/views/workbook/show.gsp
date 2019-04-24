@@ -38,6 +38,18 @@
                 <h1>Workbook Details</h1>
                 <table align="center">
                     <tr>
+                        <g:if test="${workbook.image}">
+                            <td width="200px" height="200px" rowspan="8"><img src="${resource(dir: "contact-image", file: "/${workbook.id}-${workbook.image}")}"  style="width:300px;height:300px;"/> </td>
+                        </g:if>
+                        <g:else>
+                            <td width="200px" height="200px" rowspan="8"><g:img dir="images" file="grails.svg" class="card-img-top"/></td>
+                        </g:else>
+
+
+
+                    </tr>
+
+                    <tr>
                         <td>First Name:</td>
                         <td>${workbook.firstName}</td>
                     </tr>

@@ -25,7 +25,7 @@
 
 
 <div>
-    <g:form method="POST" id="mainForm">
+    <g:form method="POST" id="mainForm" enctype="multipart/form-data">
         <g:hiddenField name="sessionId" id="sessionId" value="${params.sessionId}"/>
         <ul class="nav nav-tabs" role="tablist" id="myTab">
             <li role="presentation" class="active"><a href="#workbook" aria-controls="home" role="tab"

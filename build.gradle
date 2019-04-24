@@ -49,7 +49,7 @@ dependencies {
     console "org.grails:grails-console"
     profile "org.grails.profiles:web"
     runtime "org.glassfish.web:el-impl:2.1.2-b03"
-    runtime "com.h2database:h2"
+    runtime "com.h2database:h2:1.4.190"
     runtime "org.apache.tomcat:tomcat-jdbc"
     runtime "com.bertramlabs.plugins:asset-pipeline-grails:2.15.1"
     testCompile "org.grails:grails-gorm-testing-support"
@@ -57,6 +57,17 @@ dependencies {
     testCompile "org.grails:grails-web-testing-support"
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
+    console "org.grails:grails-console"
+    compile 'org.grails.plugins:views-json:1.0.0'
+    
+//    
+//    
+//    compile 'org.glassfish.jersey.containers:jersey-container-grizzly2-http:2.17'
+//    compile 'org.glassfish.jersey.media:jersey-media-json-jackson:2.17'
+//    testCompile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7.1'
+//    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+//    compile 'org.codehaus.groovy:groovy-all:2.4.3'
+    
 }
 
 bootRun {

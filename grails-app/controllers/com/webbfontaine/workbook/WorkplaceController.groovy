@@ -44,9 +44,9 @@ class WorkplaceController {
     def delete() {
 
         Workbook workbook = (Workbook) sessionService.getObjectFromSession(params.sessionId)
-            workplaceService.deleteWorkplace(workbook, params)
-            sessionService.addToSessionStore(params.sessionId,workbook)
-            render(template: '/workbook/template/workplacelist', model: [workbook: workbook, workplaceList: workbook.workplaces, sessionId: params.sessionId])
+        workplaceService.deleteWorkplace(workbook, params)
+        sessionService.addToSessionStore(params.sessionId, workbook)
+        render(template: '/workbook/template/workplacelist', model: [workbook: workbook, workplaceList: workbook.workplaces, sessionId: params.sessionId])
     }
 
     def save() {
@@ -62,14 +62,15 @@ class WorkplaceController {
 
         workplace.rank = rank
 
-        workplace.clearErrors()
+//        workplace.clearErrors()
+        workplace.workbook = workbook
         if (workplaceService.validateWorkplace(workbook, workplace)) {
-            workplace.workbook = workbook
             workbook.addToWorkplaces(workplace)
-                        sessionService.addToSessionStore(params.sessionId, workbook)
-            render(template: '/workbook/template/workplacelist', model: [wpErrorBean: workplace,workbook: workbook,workplace: workplace, workplaceList: workbook.workplaces, sessionId: params.sessionId])
+            sessionService.addToSessionStore(params.sessionId, workbook)
+
+            render(template: '/workbook/template/workplacelist', model: [wpErrorBean: workplace, workbook: workbook, workplace: workplace, workplaceList: workbook.workplaces, sessionId: params.sessionId])
         } else {
-            render(template: '/workbook/template/workplaceform', model: [wpErrorBean: workplace,workbook: workbook, workplace: workplace, workplaceList: workbook.workplaces, sessionId: params.sessionId, actionName: 'createWorkplace'])
+            render(template: '/workbook/template/workplaceform', model: [wpErrorBean: workplace, workbook: workbook, workplace: workplace, workplaceList: workbook.workplaces, sessionId: params.sessionId, actionName: 'createWorkplace'])
         }
 
     }

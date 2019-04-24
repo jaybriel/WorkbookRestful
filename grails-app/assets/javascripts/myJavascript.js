@@ -11,9 +11,6 @@ $(function() {
     }
 });
 
-
-
-
 function calculateAge (birthDate, otherDate) {
     birthDate = new Date(birthDate);
     otherDate = new Date(otherDate);
@@ -84,7 +81,7 @@ $(document).on('click', '#addWorkplace', function () {
 
     $.ajax({
         type: 'POST',
-        url: "/workbook/workplace/createWorkplace",
+        url: "/workplace/createWorkplace",
         data: {sessionId: sessio},
         async: false,
         success: function (result) {
@@ -101,7 +98,7 @@ $(document).on('click', '#showWorkplace', function () {
 
     $.ajax({
         type: 'POST',
-        url: "/workbook/workplace/showList",
+        url: "/workplace/showList",
         data: {sessionId: sessio},
         success: function (result) {
             console.log(sessio);
@@ -125,7 +122,7 @@ function editWorkplace(ele){
 
         $.ajax({
             type: 'POST',
-            url: "/workbook/workplace/edit",
+            url: "/workplace/edit",
             async:false,
             data: {sessionId:sessio,rank:rank},
             success: function (result) {
@@ -149,7 +146,7 @@ function viewWorkplace(ele){
 
         $.ajax({
             type: 'POST',
-            url: "/workbook/workplace/viewWorkplace",
+            url: "/workplace/viewWorkplace",
             async:false,
             data: {sessionId:sessio,rank:rank},
             success: function (result) {
@@ -175,7 +172,7 @@ function deleteWorkplace(ele)
 
         $.ajax({
             type: 'POST',
-            url: "/workbook/workplace/delete",
+            url: "/workplace/delete",
             async:false,
             data: {sessionId:sessio,rank:rank},
             success: function (result) {
@@ -199,7 +196,7 @@ $(document).on('click', '#deleteWorkplace', function () {
 
     $.ajax({
         type: 'POST',
-        url: "/workbook/workplace/delete",
+        url: "/workplace/delete",
         async:false,
         data: {sessionId:sessio,rank:rank},
         success: function (result) {
@@ -218,7 +215,7 @@ $(document).on('click', '#saveWorkplace', function () {
     $.ajax({
         type: 'POST',
         async: false,
-        url: "/workbook/workplace/save",
+        url: "/workplace/save",
         data: {
             "sessionId": $("#sessionId").val(),
             "rank": $("#rank").val(),

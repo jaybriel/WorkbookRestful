@@ -25,6 +25,7 @@
 
     <table>
         <tr>
+            <th></th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Date of Birth</th>
@@ -39,7 +40,13 @@
         <g:form method="GET">
             <g:each in="${workbookList}" var="workbook">
                 <tr>
-
+                    <td>
+                        <g:if test="${workbook.image}">
+                        <img src="${resource(dir: "contact-image", file: "/${workbook.id}-${workbook.image}")}" class="img-thumbnail" style="height: 50px; width: 50px;"/>
+                    </g:if>
+                        <g:else>
+                            <g:img dir="images" file="grails.svg" class="img-thumbnail" style="height: 50px; width: 50px;"/>
+                        </g:else></td>
                     <td>${workbook.firstName}</td>
                     <td>${workbook.lastName}</td>
                     <td>${workbook.dateOfBirth}</td>

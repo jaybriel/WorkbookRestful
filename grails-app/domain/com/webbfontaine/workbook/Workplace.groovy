@@ -1,5 +1,8 @@
 package com.webbfontaine.workbook
 
+import grails.databinding.BindingFormat
+import grails.rest.Resource
+
 class Workplace {
 
     long id
@@ -8,16 +11,19 @@ class Workplace {
     String cmpName
     String ctyCode
     String ctyDesc
-    String startDate
-    String endDate
+    @BindingFormat('yyyy-MM-dd')
+    Date startDate
+    @BindingFormat('yyyy-MM-dd')
+    Date endDate
     static constraints = {
         cmpCode blank: false,nullable: false
         cmpName nullable: true
         id nullable: false
         ctyCode nullable: false
         ctyDesc nullable: true
-        startDate nullable: false, unique: true
-        endDate nullable: false, unique: true
+        startDate nullable: false
+        endDate nullable: false
+        workbook nullable: true
 
     }
 

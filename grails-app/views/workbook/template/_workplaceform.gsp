@@ -47,22 +47,22 @@
         </div>
 
         <div class="col-5">
-            <label id="ctyDesc"><g:message code="workplace.cityDesc.label" default="Company"/></label>
-            <g:textArea name="ctyDesc" class="form-control" placeholder="Enter city description here"
+            <label for="ctyDesc"><g:message code="workplace.cityDesc.label" default="Company"/></label>
+            <g:textArea name="ctyDesc" class="form-control" id="ctyDesc" placeholder="Enter city description here"
                         value="${workplace.ctyDesc}"/>
         </div>
 
         <div class="col-5">
             <label for="startDate"><g:message code="workplace.startDate.label" default="Company"/></label>
             <g:textField data-provide="datepicker" placeholder="click here to select date in calendar"
-                         data-date-format="yyyy-mm-dd" class="datepicker form-control"
+                         data-date-format="yyyy-mm-dd" class="datepicker form-control" data-date-autoclose="true"
                          onchange="getBirthDate();" name="startDate" id="startDate" value="${workplace.startDate}"/>
         </div>
 
         <div class="col-5">
             <label for="endDate"><g:message code="workplace.endDate.label" default="Company"/></label>
             <g:textField data-provide="datepicker" placeholder="click here to select date in calendar"
-                         data-date-format="yyyy-mm-dd" class="datepicker form-control"
+                         data-date-format="yyyy-mm-dd" class="datepicker form-control" data-date-autoclose="true"
                          onchange="getBirthDate();" name="endDate" id="endDate" value="${workplace?.endDate}"/>
         </div>
 
