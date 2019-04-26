@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/workbook.iml" filepath="$PROJECT_DIR$/workbook.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/workbook_integrationTest.iml" filepath="$PROJECT_DIR$/.idea/modules/workbook_integrationTest.iml" group="workbook" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/workbook_main.iml" filepath="$PROJECT_DIR$/.idea/modules/workbook_main.iml" group="workbook" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/workbook_test.iml" filepath="$PROJECT_DIR$/.idea/modules/workbook_test.iml" group="workbook" />
+    </modules>
+  </component>
+</project>
