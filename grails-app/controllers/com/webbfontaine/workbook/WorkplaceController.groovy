@@ -62,7 +62,6 @@ class WorkplaceController {
 
         workplace.rank = rank
 
-//        workplace.clearErrors()
         workplace.workbook = workbook
         if (workplaceService.validateWorkplace(workbook, workplace)) {
             workbook.addToWorkplaces(workplace)

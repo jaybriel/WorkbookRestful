@@ -16,10 +16,10 @@ class WorkbookController {
     def index() {
         flash.message = "Welcome!"
         def workbookList = workbookService.list()
-//        respond Workbook.list(params), model:[workbookCount: Workbook.count()]
 
-//        render(model: [workbookList: workbookList], view: 'index') as JSON
-        respond(workbookList,model:[workbookList:workbookList], view:"index")
+
+        render(model: [workbookList: workbookList], view: 'index')
+
 
     }
 
@@ -32,11 +32,11 @@ class WorkbookController {
         }
     }
 
-    def view(Long id) {
+    def view(Long id) {//show
         def workbook = workbookService.retrieveWorkbookById(id)
 
-//        render(view: '/workbook/show', model: [workbook: workbook, workplaceList: workbook.workplaces, actionName: actionName])
-        respond(workbook.errors,model: [workplaceList: workbook.workplaces, workbook: workbook,actionName: actionName], view: '/workbook/show')
+        render(view: '/workbook/show', model: [workbook: workbook, workplaceList: workbook.workplaces, actionName: actionName])
+
 
     }
 
@@ -67,9 +67,7 @@ class WorkbookController {
         sessionService.getObjectFromSession(sid)
         params.sessionId = sid
         if (workbook) {
-//            render(view: '/workbook/create', model: [workbook: workbook, workplaceList: workbook.workplaces, actionName: actionName, sessionId: params.sessionId], id: sid)
-              respond(workbook.errors,model: [workplaceList: workbook.workplaces, workbookList: workbook.findAll(),errorBean: workbook,actionname:actionName, sessionId: sessionId], view: '/workbook/create')
-
+            render(view: '/workbook/create', model: [workbook: workbook, workplaceList: workbook.workplaces, actionName: actionName, sessionId: params.sessionId], id: sid)
         } else {
             redirect action: 'index'
         }
@@ -88,13 +86,11 @@ class WorkbookController {
         bindData(workbook, params)
         workbookService.save(workbook,request)
         if (!workbook.hasErrors()) {
-//            render(model: [workplaceList: workbook.workplaces, workbookList: workbook.findAll(), errorBean: workbook, sessionId: sessionId], view: '/workbook/index')
-              respond(workbook.errors,model: [workplaceList: workbook.workplaces, workbookList: workbook.findAll(),errorBean: workbook, sessionId: sessionId], view: '/workbook/index')
+            render(model: [workplaceList: workbook.workplaces, workbookList: workbook.findAll(), errorBean: workbook, sessionId: sessionId], view: '/workbook/index')
 
         } else {
-//            render(model: [workbook: workbook, errorBean: workbook, actionName: 'createWorkbook', sessionId: sessionId], view: '/workbook/create')
-            respond(workbook.errors,model: [workplaceList: workbook.workplaces, workbookList: workbook.findAll(),errorBean: workbook, sessionId: sessionId], view: '/workbook/create')
-        }
+            render(model: [workbook: workbook, errorBean: workbook, actionName: 'createWorkbook', sessionId: sessionId], view: '/workbook/create')
+    }
 
     }
 

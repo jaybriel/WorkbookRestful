@@ -72,7 +72,24 @@ $(document).on('click', '#showWorkbookform', function (e) {
     });
 
 });
+$(document).on('click', '#deleteWorkbook', function (e) {
+    console.log("here");
+    // var sessio = document.getElementById("sessionId").value;
 
+    $.ajax({
+        type: 'POST',
+        url: "/workbook/delete",
+        data: {
+            "id": $("#id").val()
+        },
+        // data: {sessionId: sessio},
+        success: function (result) {
+            console.log("here inside");
+            // console.log(sessio);
+            $("#indexWorkbook").html(result)
+        }
+    });
+});
 
 
 $(document).on('click', '#addWorkplace', function () {

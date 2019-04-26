@@ -33,9 +33,6 @@ class Workbook {
         email email: true,nullable: false,unique: true
         phone nullable: false
        image nullable:true,blank:true
-//
-//        firstName nullable: true
-//        lastName nullable: true
     }
 
 
