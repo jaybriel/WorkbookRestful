@@ -70,6 +70,12 @@
         </g:form>
     </table>
 </div>
+<<<<<<< Updated upstream
 
+=======
+</g:form>
+
+</div>
+>>>>>>> Stashed changes
 </body>
 </html>

@@ -59,6 +59,7 @@ dependencies {
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
     console "org.grails:grails-console"
     compile 'org.grails.plugins:views-json:1.0.0'
+<<<<<<< Updated upstream
     
 //    
 //    
@@ -67,6 +68,10 @@ dependencies {
 //    testCompile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7.1'
 //    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
 //    compile 'org.codehaus.groovy:groovy-all:2.4.3'
+=======
+    compile 'org.grails:grails-datastore-rest-client:5.0.0.RC2'
+    compile 'org.grails.plugins:joda-time:2.1.0'
+>>>>>>> Stashed changes
     
 }
 

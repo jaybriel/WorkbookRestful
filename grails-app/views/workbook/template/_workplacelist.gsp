@@ -77,7 +77,7 @@
         <tr>
             <td>
 
-                <g:if test="${actionName == "view"}">
+                <g:if test="${actionName == "show"}">
                 </g:if>
                 <g:else>
                     <button type="button" class="btn btn-default" id="addWorkplace">Add Workplace</button>

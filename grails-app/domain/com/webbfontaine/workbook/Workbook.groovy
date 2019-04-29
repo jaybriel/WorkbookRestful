@@ -4,6 +4,7 @@ import grails.databinding.BindingFormat
 import groovy.json.JsonBuilder
 import groovy.transform.EqualsAndHashCode
 import groovy.xml.MarkupBuilder
+import org.joda.time.LocalDate
 
 import javax.xml.bind.annotation.XmlRootElement
 //
@@ -13,13 +14,12 @@ class Workbook {
     Integer id
     String firstName
     String lastName
-    @BindingFormat('yyyy-MM-dd')
-    Date dateOfBirth
+    LocalDate dateOfBirth
     int age
     String passportNumber
     String email
     String phone
-    String image
+//    String image
 
     static hasMany = [workplaces: Workplace]
 
@@ -32,10 +32,14 @@ class Workbook {
         passportNumber unique: true,nullable: false
         email email: true,nullable: false,unique: true
         phone nullable: false
+<<<<<<< Updated upstream
        image nullable:true,blank:true
 //
 //        firstName nullable: true
 //        lastName nullable: true
+=======
+//       image nullable:true,blank:true
+>>>>>>> Stashed changes
     }
 
 
@@ -43,56 +47,5 @@ class Workbook {
         workplaces cascade: 'all-delete-orphan'
     }
 
-    String toString(){
-        "$firstName $lastName $dateOfBirth $age $passportNumber $email $phone $image"
-    }
 
-    String toXML(){
-        StringWriter writer = new StringWriter()
-        def builder = new MarkupBuilder(writer)
-        builder.person(id:id){
-            id id
-            firstName firstName
-            lastName lastName
-            dateOfBirth dateOfBirth
-            age age
-            passportNumber passportNumber
-            email email
-            phone phone
-            image image
-        }
-        writer.toString()
-    }
-
-    Map toJson(){
-        def builder = new JsonBuilder()
-        def root = builder{
-            id id
-            firstName firstName
-            lastName lastName
-            dateOfBirth dateOfBirth
-            age age
-            passportNumber passportNumber
-            email email
-            phone phone
-            image image
-
-        }
-    }
-
-    String toJsonString(){
-        def builder = new JsonBuilder()
-        def root = builder{
-            id id
-            firstName firstName
-            lastName lastName
-            dateOfBirth dateOfBirth
-            age age
-            passportNumber passportNumber
-            email email
-            phone phone
-            image image
-        }
-        builder.toString()
-    }
 }
